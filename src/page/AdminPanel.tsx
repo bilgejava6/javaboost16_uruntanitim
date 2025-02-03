@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from "@iconify/react";
+
 import './css/app.min.css'
 import './css/icons.min.css'
 import './css/vendor.min.css'
