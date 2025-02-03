@@ -55,4 +55,9 @@ function Routerpage() {
 }
 ```
 
+### iconify için kurulumlar
+    detaylar için : https://iconify.design/docs/icon-components/react/
+
+    - npm install --save-dev @iconify/react
+
 
