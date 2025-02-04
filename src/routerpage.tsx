@@ -9,7 +9,10 @@ import Register from './page/Register';
 import AddProductPage from './page/AddProductPage';
 function Routerpage() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{
+      v7_startTransition: true,
+      v7_relativeSplatPath: true,
+    }}>
         <Routes>
             <Route path='/' element={<Homepage />}/>
             <Route path='/admin-panel' element={<AdminPanel />}/> 
