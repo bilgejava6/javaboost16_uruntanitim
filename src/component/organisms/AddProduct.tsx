@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ICategory } from '../../model/ICategory';
+import SizeList from '../molecules/SizeList';
 
 function AddProduct() {
   const [categories, setCategories] = useState<ICategory[]>();
@@ -52,7 +53,7 @@ function AddProduct() {
                         </div>
                         <div className="mb-3">
                                 <label className="form-label"> Boyut Listesi</label>
-                                
+                                <SizeList />
                         </div>
                     </div>
                 </div>
