@@ -2,8 +2,33 @@ import React from 'react'
 import { Icon } from "@iconify/react";
 import { IAdminProductList } from '../../model/IAdminProductList';
 import { getCurrency } from '../../util/Tools';
+import { useNavigate } from 'react-router';
+import swal from 'sweetalert';
 function AdminPanelProductTable(props: {productList?: IAdminProductList[]}) {
+  const navigate = useNavigate();
   const list = props.productList;
+  const deleteProduct = (productId: number)=>{
+      /**
+       * swal ile evet hayır
+       */
+      swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: [true,true],
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                  // Eğer sil için OK demiş ise burada sunucuya fetch atılacak silme işlemi için 
+              swal("Kayıt başarı ile silindi.!", {
+                icon: "success",
+              });
+            } else {
+              swal("Silme işlemi iptal edildi.");
+            }
+          });
+  }
   const getRowList = ()=>{
       return   list?.map(p=>{
                 return   <tr>
@@ -34,9 +59,9 @@ function AdminPanelProductTable(props: {productList?: IAdminProductList[]}) {
                               <td> <span className="badge p-1 bg-light text-dark fs-12 me-1"><i className="bx bxs-star align-text-top fs-14 text-warning me-1"></i> {p.rate}</span> {p.review} Review</td>
                               <td>
                                     <div className="d-flex gap-2">
-                                          <a href="#!" className="btn btn-light btn-sm"><Icon icon="solar:eye-broken"  className="align-middle fs-18"/> </a>
-                                          <a href="#!" className="btn btn-soft-primary btn-sm"><Icon icon="solar:pen-2-broken"  className="align-middle fs-18"/> </a>
-                                          <a href="#!" className="btn btn-soft-danger btn-sm"><Icon icon="solar:trash-bin-minimalistic-2-broken"  className="align-middle fs-18"/></a>
+                                          <a onClick={()=>{navigate('/detail-product?productId='+p.productId)}} className="btn btn-light btn-sm"><Icon icon="solar:eye-broken"  className="align-middle fs-18"/> </a>
+                                          <a onClick={()=>{navigate('/edit-product?productId='+p.productId)}} className="btn btn-soft-primary btn-sm"><Icon icon="solar:pen-2-broken"  className="align-middle fs-18"/> </a>
+                                          <a onClick={()=>{deleteProduct(p.productId)}} className="btn btn-soft-danger btn-sm"><Icon icon="solar:trash-bin-minimalistic-2-broken"  className="align-middle fs-18"/></a>
                                     </div>
                               </td>
                         </tr>

@@ -7,6 +7,8 @@ import AdminPanel from './page/AdminPanel';
 import Login from './page/Login';
 import Register from './page/Register';
 import AddProductPage from './page/AddProductPage';
+import ProductEditPage from './page/ProductEditPage';
+import ProductDetail from './page/ProductDetail';
 function Routerpage() {
   return (
     <BrowserRouter future={{
@@ -18,7 +20,10 @@ function Routerpage() {
             <Route path='/admin-panel' element={<AdminPanel />}/> 
             <Route path='/add-product' element={<AddProductPage />}/> 
             <Route path='/login' element={<Login />}/> 
-            <Route path='/register' element={<Register />}/>                            
+            <Route path='/register' element={<Register />}/>     
+            <Route path='/update-product' element={<ProductEditPage />}/>     
+            <Route path='/detail-product/**' element={<ProductDetail />}/>     
+                                   
         </Routes>
     </BrowserRouter>
   )

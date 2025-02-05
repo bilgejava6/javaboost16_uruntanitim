@@ -1,4 +1,5 @@
 export interface IAdminProductList{
+    productId: number,
     name: string,
     sizes: string[],
     price: number,
