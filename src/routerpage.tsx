@@ -9,6 +9,7 @@ import Register from './page/Register';
 import AddProductPage from './page/AddProductPage';
 import ProductEditPage from './page/ProductEditPage';
 import ProductDetail from './page/ProductDetail';
+import GlobalStateExample from './page/GlobalStateExample';
 function Routerpage() {
   return (
     <BrowserRouter future={{
@@ -23,7 +24,7 @@ function Routerpage() {
             <Route path='/register' element={<Register />}/>     
             <Route path='/update-product' element={<ProductEditPage />}/>     
             <Route path='/detail-product/**' element={<ProductDetail />}/>     
-                                   
+            <Route path='/global-state' element={<GlobalStateExample />}/>                     
         </Routes>
     </BrowserRouter>
   )
