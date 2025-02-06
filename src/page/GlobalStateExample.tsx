@@ -5,30 +5,17 @@ import TeamList from '../component/molecules/TeamList';
 
 export default function GlobalStateExample() {
   const [userList, setUserList] = useState<IUserProfile[]>();
-  const [aTeam,setATeam] = useState([
-    {
-        userName: 'muhammet', 
-        image: 'https://picsum.photos/100/100', 
-        uuid: '12'
-    },
-    {
-        userName: 'Ahmet', 
-        image: 'https://picsum.photos/100/100', 
-        uuid: '12'
-    },
-    {
-        userName: 'Deniz', 
-        image: 'https://picsum.photos/100/100', 
-        uuid: '12'
+  const [aTeam,setATeam] = useState<any[]>([]);
+  const [bTeam,setBTeam] = useState<any[]>([]);
+  const addTeam= (user: IUserProfile, team: 'A' | 'B')=>{    
+    let teamUser = {
+        userName: user.name.first + ' '+ user.name.last , 
+        image: user.picture.large, 
+        uuid: user.login.uuid
     }
-  ]);
-  const [bTeam,setBTeam] = useState([
-    {
-        userName: 'demet', 
-        image: 'https://picsum.photos/100/100', 
-        uuid: '12'
-    }
-  ]);
+    if(team === 'A') setATeam([...aTeam, teamUser]);
+    else setBTeam([...bTeam, teamUser]);
+  }
   useEffect(()=>{
     fetch('https://randomuser.me/api/?results=50')
     .then(res=>res.json())
@@ -40,9 +27,9 @@ export default function GlobalStateExample() {
             <div className="col-9">
                 <div className="row">
                     {
-                        userList?.map(ahmetAmcaNasilsin=>{
-                            return <div className="col-4 p-2">
-                                <UserCard user={ahmetAmcaNasilsin}/>
+                        userList?.map((ahmetAmcaNasilsin,index)=>{
+                            return <div key={index} className="col-4 p-2">
+                                <UserCard user={ahmetAmcaNasilsin} onClick={addTeam}/>
                             </div>
                         })
                     }

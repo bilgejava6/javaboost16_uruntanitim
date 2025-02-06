@@ -1,7 +1,7 @@
 import React from 'react'
 import { IUserProfile } from '../../model/IUserProfile'
 
-function UserCard(props: {user: IUserProfile}) {
+function UserCard(props: {user: IUserProfile, onClick: (user: IUserProfile, team: 'A' | 'B')=>void}) {
     const user = props.user;
   return (
     <div className="card shadow ">
@@ -17,10 +17,10 @@ function UserCard(props: {user: IUserProfile}) {
         <div className="card-body">
             <div className="row justify-content-around">
                 <div className='col-4'>
-                    <input type="button" className="btn btn-success" value='Grup A'/>
+                    <input onClick={()=>{props.onClick(user, 'A')}} type="button" className="btn btn-success" value='Grup A'/>
                 </div>
                 <div className='col-4'>
-                    <input type="button" className="btn btn-primary" value='Grup B'/>    
+                    <input onClick={()=>{props.onClick(user, 'B')}} type="button" className="btn btn-primary" value='Grup B'/>    
                 </div>
             </div>
         </div>

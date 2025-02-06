@@ -1,10 +1,14 @@
 import React from 'react'
+import { IUserProfile } from '../../model/IUserProfile'
 interface teamUser{
     userName: string, 
     image: string, 
     uuid: string
 }
-function TeamList(props: {teamName: string, teamsSelect: 'A' | 'B', teamUserList: teamUser[]}) {
+function TeamList(props: 
+    {teamName: string, teamsSelect: 'A' | 'B', 
+        teamUserList: teamUser[]
+        }) {
     // const tN = props.teamName;
     const {teamName, teamsSelect, teamUserList} = props;
   return (
@@ -15,8 +19,8 @@ function TeamList(props: {teamName: string, teamsSelect: 'A' | 'B', teamUserList
                     <h4 className='card-title text-center text-white'>{teamName}</h4>
                     <ul className="list-group mt-4">
                         {
-                            teamUserList.map(u=>{
-                                return <li className="list-group-item">
+                            teamUserList.map((u,index)=>{
+                                return <li key={index} className="list-group-item">
                                             <div className="row">
                                                 <div className="col-3">
                                                     <img src={u.image} style={{width:30, height:30, borderRadius: 30}} />
