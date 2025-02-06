@@ -3,6 +3,7 @@ import { IUserProfile } from '../../model/IUserProfile'
 
 function UserCard(props: {user: IUserProfile, onClick: (user: IUserProfile, team: 'A' | 'B')=>void}) {
     const user = props.user;
+    console.log('UserCard sayafası render');
   return (
     <div className="card shadow ">
         <img src={user.picture.large} className='card-img-top' />

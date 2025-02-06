@@ -11,6 +11,7 @@ function TeamList(props:
         }) {
     // const tN = props.teamName;
     const {teamName, teamsSelect, teamUserList} = props;
+    console.log('Team List render');
   return (
     <div className='row mt-5'>
         <div className="col">

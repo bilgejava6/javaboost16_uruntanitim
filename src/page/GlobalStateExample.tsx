@@ -21,6 +21,7 @@ export default function GlobalStateExample() {
     .then(res=>res.json())
     .then(data=>setUserList(data.results))
   },[]);  
+  console.log('GlobalState Ana Sayfa Render')
   return (
     <div className="container-fluid">
         <div className="row">
