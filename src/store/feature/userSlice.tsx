@@ -5,7 +5,7 @@
  * 3. Slice ı oluşturmak
  */
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { IUserProfile } from "../../model/IUserProfile"
 
 //1.
@@ -33,8 +33,27 @@ const fetchUserList = createAsyncThunk('', ()=>{})
 const userSlice = createSlice({
     name: 'user',
     initialState: initialStateUser,
-    reducers: {},
+    reducers: {
+        /**
+         * 
+         * @param state -> initialState içerisinde tanımlı olan değişkenleri kapsar ve böylece değiştirebilirsiniz.
+         * @param action -> user gönderdiğinizi düşünün bu bilgiyi alarak ilgili alana set edebilirsiniz.
+         * PayloadAction<Team> -> bu ifade action içerisinde gelecek olan değerin türünü belirler.
+         */
+        addATeam(state, action: PayloadAction<Team>){
+            state.aTeamList = [...state.aTeamList, action.payload]
+        },
+        addBTeam(state, action: PayloadAction<Team>){
+            state.bTeamList = [...state.bTeamList, action.payload]
+        }
+    },
     extraReducers: (build)=>{}
 })
-
+/**
+ * DİKKAT!!!!
+ * eğer reducers yazmış iseniz bunu mutlaka export etmeniz gereklidir
+ */
+export const {
+    addATeam, addBTeam
+} = userSlice.actions;
 export default userSlice.reducer;
