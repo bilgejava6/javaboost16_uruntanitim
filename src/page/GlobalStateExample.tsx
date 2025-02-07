@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { IUserProfile } from '../model/IUserProfile';
 import UserCard from '../component/molecules/UserCard';
 import TeamList from '../component/molecules/TeamList';
+import { useDispatch } from 'react-redux';
+import { fetchUserList } from '../store/feature/userSlice';
+import { useAppSelector, useAppDispatch } from '../util/Hooks';
 
 export default function GlobalStateExample() {
-  const [userList, setUserList] = useState<IUserProfile[]>();
-
+   const userList = useAppSelector(state=> state.user.userList);
+   const dispath =  useAppDispatch();
    useEffect(()=>{
-    fetch('https://randomuser.me/api/?results=50')
-    .then(res=>res.json())
-    .then(data=>setUserList(data.results))
+        dispath(fetchUserList())
   },[]);  
   console.log('GlobalState Ana Sayfa Render')
   return (

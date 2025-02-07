@@ -16,6 +16,6 @@ const store = configureStore({
  */
 export type tanitimDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export const TanitimSelector = useSelector.withTypes<RootState>();
+
 
 export default store;

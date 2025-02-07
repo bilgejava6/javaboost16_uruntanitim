@@ -1,6 +1,6 @@
 import React from 'react'
-import { IUserProfile } from '../../model/IUserProfile'
-import { TanitimSelector } from '../../store'
+import { useAppSelector } from '../../util/Hooks';
+
 interface teamUser{
     userName: string, 
     image: string, 
@@ -11,8 +11,8 @@ function TeamList(props:
        
         }) {
     // const tN = props.teamName;
-    const teamAList = TanitimSelector(store=> store.user.aTeamList);
-    const teamBList = TanitimSelector(store=> store.user.bTeamList);
+    const teamAList = useAppSelector(store=> store.user.aTeamList);
+    const teamBList = useAppSelector(store=> store.user.bTeamList);
     
     const {teamName, teamsSelect} = props;
     console.log('Team List render');

@@ -7,26 +7,35 @@
 
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { IUserProfile } from "../../model/IUserProfile"
+import swal from "sweetalert"
 
 //1.
-interface Team{
+export interface Team{
     userName: string,
     image: string,
     uuid: string
 }
-interface IInitialState{
+export interface IInitialState{
     aTeamList: Team[],
     bTeamList: Team[],
-    userList: IUserProfile[]
+    userList: IUserProfile[],
+    isUserListLoading: boolean
 }
-const initialStateUser: IInitialState = {
+export const initialStateUser: IInitialState = {
     aTeamList: [],
     bTeamList: [],
-    userList: []
+    userList: [],
+    isUserListLoading: false
 }
 
 //2.  OPTIONAL
-const fetchUserList = createAsyncThunk('', ()=>{})
+export const fetchUserList = createAsyncThunk(
+    'user/fetchUserList', async ()=>{
+        const response = await fetch('https://randomuser.me/api/?results=50')
+        .then(res=>res.json());
+        return response;    
+    }
+)
 
 
 //3. 
@@ -47,7 +56,16 @@ const userSlice = createSlice({
             state.bTeamList = [...state.bTeamList, action.payload]
         }
     },
-    extraReducers: (build)=>{}
+    extraReducers: (build)=>{
+        build.addCase(fetchUserList.pending,(state)=>{
+            state.isUserListLoading = true;
+        })
+        build.addCase(fetchUserList.fulfilled,(state,action)=>{            
+            state.isUserListLoading = false;
+            state.userList = action.payload.results;
+           
+        })
+    }
 })
 /**
  * DİKKAT!!!!
